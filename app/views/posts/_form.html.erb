@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <div>
+    <%= f.label :title, 'Blog Title' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :category_id %>
+    <%= f.collection_select(:category_id, Category.order(:name), :id, :name)  %>
+  </div>
+  <div>
+    <%= f.label :body, 'Content' %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

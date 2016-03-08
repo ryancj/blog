@@ -1,0 +1,19 @@
+<h1>Blog Posts</h1>
+<%= form_tag(posts_path, :method => 'get', id: 'search-form') do %>
+  <%= text_field_tag :search, params[:search], placeholder: 'Search Blog' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <%= link_to post.title, post %>
+    <p><%= post.body %></p>
+    <p>Category: <%= post.category_name %></p>
+    <p>Date Created - <%= post.created_at %></p>
+    <hr>
+  <% end %>
+<% else %>
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
+
+<%= paginate @posts %>

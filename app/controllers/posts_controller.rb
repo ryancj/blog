@@ -18,6 +18,7 @@ before_action :authenticate_user!, except: [:show, :index]
 
   def show
     @comment = Comment.new
+    @favourite = @post.fav_for(current_user)
   end
 
   def index

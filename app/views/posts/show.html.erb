@@ -6,6 +6,12 @@
 
 <p><%= @post.created_at %></p>
 
+<% if @favourite.present? && @favourite.persisted? %>
+  <%= link_to 'Unfavourite', post_favourite_path(@post, @favourite), method: :delete %>
+<% else %>
+  <%= link_to 'Favourite', post_favourites_path(@post), method: :post %>
+<% end %>
+
 <h3>Comments</h3>
 
 <% @post.comments.each do |comment| %>

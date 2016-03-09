@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   margin-top: 50px;
+ }
+
+input[type='submit'] {
+  margin-right: 10px;
+}

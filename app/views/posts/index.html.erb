@@ -1,8 +1,4 @@
 <h1>Blog Posts</h1>
-<%= form_tag(posts_path, :method => 'get', id: 'search-form') do %>
-  <%= text_field_tag :search, params[:search], placeholder: 'Search Blog' %>
-  <%= submit_tag 'Search' %>
-<% end %>
 
 <% if @posts.present? %>
   <% @posts.each do |post| %>

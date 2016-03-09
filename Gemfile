@@ -6,6 +6,8 @@ gem 'interactive_editor'
 gem 'awesome_print'
 gem 'kaminari'
 gem 'bootstrap-sass'
+gem 'cancancan'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record

@@ -32,7 +32,6 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-    redirect_to root_path, alert: "Access denied." unless can? :edit, @post
   end
 
   def update

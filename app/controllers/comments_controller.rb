@@ -6,6 +6,7 @@ before_action :authenticate_user!
     @post = Post.find params[:post_id]
     @comment = Comment.new comment_params
     @comment.post = @post
+    redirect_to post_path(@post), alert: "Access denied." and return unless can? :create, Comment
     if @comment.save
       redirect_to post_path(@post), notice: 'Comment created.'
     else

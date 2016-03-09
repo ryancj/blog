@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
 before_action :find_post, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, except: [:show, :index]
+# before_action :authenticate_user!, except: [:show, :index]
 
   def new
+    redirect_to root_path, alert: "Access denied." and return unless can? :create, Post
     @post = Post.new
   end
 
@@ -31,6 +32,7 @@ before_action :authenticate_user!, except: [:show, :index]
   end
 
   def edit
+    redirect_to root_path, alert: "Access denied." unless can? :edit, @post
   end
 
   def update
@@ -45,7 +47,7 @@ before_action :authenticate_user!, except: [:show, :index]
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: 'Question deleted.'
+    redirect_to posts_path, notice: 'Post deleted.'
   end
 
   private

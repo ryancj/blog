@@ -9,6 +9,7 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def create
     @post = Post.new post_params
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: 'Post created.'
     else
@@ -33,6 +34,7 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
+    redirect_to root_path, alert: "Access denied." unless can? :edit, @post
   end
 
   def update
@@ -46,6 +48,7 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   end
 
   def destroy
+    redirect_to root_path, alert: "Access denied." and return unless can? :destroy, @post
     @post.destroy
     redirect_to posts_path, notice: 'Post deleted.'
   end

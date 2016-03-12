@@ -6,15 +6,18 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
 
-
     if user.persisted?
       can :create, Post
       can :create, Comment
     end
 
-
-
-
+    can :manage, Post do |post|
+      post.user == user
+    end
+    #
+    # can :edit, Post do |post|
+    #   post.user == user
+    # end
 
     #   if user.admin?
     #     can :manage, :all

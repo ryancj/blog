@@ -15,9 +15,13 @@
  */
 
  body {
-   margin-top: 50px;
+  margin-top: 50px;
  }
 
 input[type='submit'] {
   margin-right: 10px;
+}
+
+.form-control {
+  width: 40%;
 }

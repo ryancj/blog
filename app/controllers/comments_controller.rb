@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @post = Post.find params[:post_id]
     @comment = Comment.new comment_params
     @comment.post = @post
+    @comment.user = current_user
     redirect_to post_path(@post), alert: "Access denied." and return unless can? :create, Comment
     if @comment.save
       redirect_to post_path(@post), notice: 'Comment created.'
@@ -18,6 +19,7 @@ class CommentsController < ApplicationController
   def destroy
     @post = Post.find params[:post_id]
     @comment = Comment.find params[:id]
+    redirect_to root_path, alert: "Access denied." and return unless can? :destroy, @comment
     @comment.destroy
     redirect_to post_path(@post), notice: 'Comment deleted.'
   end

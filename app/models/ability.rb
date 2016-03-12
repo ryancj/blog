@@ -3,7 +3,6 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-    #
     user ||= User.new # guest user (not logged in)
 
     if user.persisted?
@@ -14,6 +13,12 @@ class Ability
     can :manage, Post do |post|
       post.user == user
     end
+
+    can :manage, Comment do |comment|
+      comment.user == user
+      comment.post.user == user
+    end
+
     #
     # can :edit, Post do |post|
     #   post.user == user

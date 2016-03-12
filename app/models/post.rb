@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   has_many :users, through: :favourites
 
   validates :title, presence: true, uniqueness: true, length: { minimum: 7 }
-  validates :body, presence: true, uniqueness: true
+  validates :body, presence: true
 
   def category_name
     category.name if category

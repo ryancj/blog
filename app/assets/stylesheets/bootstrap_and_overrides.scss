@@ -1,7 +1,11 @@
 $brand-primary: #2b90d9;
 $headings-color: #2b90d9;
-$navbar-brand: #2b90d9;
+$panel-primary-heading-bg: #FFF;
 //#2b90d9 lightblue, #d9e1e8 white/grey, #9baec8 navyblue, #282c37 dark
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.panel.panel-primary {
+  border-width: 3px;
+}

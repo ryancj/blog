@@ -2,12 +2,17 @@
 
 <% if @posts.present? %>
   <% @posts.each do |post| %>
-    <h3><%= link_to post.title, post %></h3>
-    <p><%= post.body %></p>
-    <p>Category: <%= post.category_name %></p>
-    <p>Created by: <%= post.user.full_name %></p>
-    <p>Date Created - <%= post.created_at.strftime("%Y-%m-%d") %></p>
-    <hr>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4><%= link_to post.title, post %></h4>
+      </div>
+      <div class="panel-body">
+        <p><%= post.body %></p>
+        <p>Category: <%= post.category_name %></p>
+        <p>Created by: <%= post.user.full_name %></p>
+        <p>Date Created - <%= post.created_at.strftime("%Y-%m-%d") %></p>
+      </div>
+    </div>
   <% end %>
 <% else %>
   <p>There are no posts containing the term(s) <%= params[:search] %>.</p>

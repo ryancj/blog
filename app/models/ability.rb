@@ -7,10 +7,9 @@ class Ability
 
     can :manage, :all if user.role == "admin"
 
-    if user.persisted?
-      can :create, Post
-      can :create, Comment
-    end
+    can :create, Post if user.persisted?
+
+    can :create, Comment if user.persisted?
 
     can :manage, Post do |post|
       post.user == user
@@ -20,11 +19,6 @@ class Ability
       comment.user == user
       comment.post.user == user
     end
-
-    #
-    # can :edit, Post do |post|
-    #   post.user == user
-    # end
 
     #   if user.admin?
     #     can :manage, :all

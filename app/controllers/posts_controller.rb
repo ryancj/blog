@@ -3,8 +3,8 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
 # before_action :authenticate_user!, except: [:show, :index]
 
   def new
-    redirect_to root_path, alert: "Access denied." and return unless can? :create, Post
     @post = Post.new
+    redirect_to root_path, alert: "Access denied." and return unless can? :create, @post
   end
 
   def create

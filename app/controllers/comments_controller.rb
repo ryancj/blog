@@ -7,8 +7,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @comment.post = @post
     @comment.user = current_user
-    redirect_to post_path(@post), alert: "Access denied." and return unless can? :create, Comment
+    redirect_to post_path(@post), alert: "Access denied." and return unless can? :create, @comment
     if @comment.save
+      CommentsMailer.notify_post_owner(@comment).deliver_now if user_signed_in?
       redirect_to post_path(@post), notice: 'Comment created.'
     else
       flash[:alert] = 'Comment is not unique.'

@@ -7,6 +7,7 @@ gem 'awesome_print'
 gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'cancancan'
+gem 'delayed_job_active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

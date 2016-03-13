@@ -2,7 +2,7 @@
 
 <% if @posts.present? %>
   <% @posts.each do |post| %>
-    <%= link_to post.title, post %>
+    <h3><%= link_to post.title, post %></h3>
     <p><%= post.body %></p>
     <p>Category: <%= post.category_name %></p>
     <p>Created by: <%= post.user.full_name %></p>

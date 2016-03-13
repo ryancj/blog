@@ -4,12 +4,14 @@
 
 <p>Category: <%= @post.category_name %></p>
 
+<p>Created by: <%= @post.user.full_name %></p>
+
 <p><%= @post.created_at %></p>
 
 <% if @favourite.present? && @favourite.persisted? %>
-  <%= link_to 'Unfavourite', post_favourite_path(@post, @favourite), method: :delete %>
+  <%= link_to fa_icon("star"), post_favourite_path(@post, @favourite), method: :delete, class: "star-fav-icon" %>
 <% else %>
-  <%= link_to 'Favourite', post_favourites_path(@post), method: :post %>
+  <%= link_to fa_icon("star-o"), post_favourites_path(@post), method: :post, class: "star-fav-icon"%>
 <% end %>
 
 <h3>Comments</h3>

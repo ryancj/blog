@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'delayed_job_active_record'
 gem "font-awesome-rails"
+gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

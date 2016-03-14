@@ -8,11 +8,9 @@
 
 <p><%= @post.created_at %></p>
 
-<% if @favourite.present? && @favourite.persisted? %>
-  <%= link_to fa_icon("star"), post_favourite_path(@post, @favourite), method: :delete, class: "star-fav-icon" %>
-<% else %>
-  <%= link_to fa_icon("star-o"), post_favourites_path(@post), method: :post, class: "star-fav-icon"%>
-<% end %>
+<div id='post-fav'>
+  <%= render '/favourites/post_fav' %>
+</div>
 
 <h3>Comments</h3>
 

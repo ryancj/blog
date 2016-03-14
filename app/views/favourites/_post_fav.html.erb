@@ -1,0 +1,8 @@
+<% fav = @post.fav_for(current_user) %>
+<% if fav %>
+  <%= link_to fa_icon("star"), post_favourite_path(@post, fav),
+  method: :delete, remote: true, class: "star-fav-icon" %>
+<% else %>
+  <%= link_to fa_icon("star-o"), post_favourites_path(@post),
+  method: :post, remote: true, class: "star-fav-icon"%>
+<% end %>

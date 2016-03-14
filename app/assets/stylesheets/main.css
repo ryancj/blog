@@ -1,0 +1,25 @@
+body {
+  margin-top: 50px;
+}
+
+input[type='submit'] {
+  margin-right: 10px;
+}
+
+.form-control {
+  width: 40%;
+}
+
+.center_div{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.fa.fa-meh-o {
+  display: inline-block;
+  float: left;
+  padding: 0 10px 0 0;
+  font-size: 45px;
+  line-height: 50px;
+  color: #2b90d9;
+}

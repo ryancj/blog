@@ -28,7 +28,7 @@
             <li><%= link_to 'Login', new_session_path %></li>
             <li><%= link_to 'Sign Up', new_user_path %></li>
           <% end %>
-          <li><%= form_tag(posts_path, :method => 'get', id: 'search-form', class: 'navbar-form navbar-right') do %>
+          <li><%= form_tag(posts_path, method: 'get', id: 'search-form', class: 'navbar-form navbar-right') do %>
             <%= text_field_tag :search, params[:search], placeholder: 'Search Blog', class: 'form-control' %>
             <%= submit_tag 'Search', class: 'btn btn-default' %></li>
           <% end %>

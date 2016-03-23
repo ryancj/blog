@@ -7,11 +7,11 @@ before_action :authenticate_user!
     @comment = Comment.new comment_params
     @comment.post = @post
     @comment.user = current_user
-    redirect_to post_path(@post),
+    redirect_to @post
     alert: "You must be signed-in before you can make a comment" and return unless can? :create, @comment
     if @comment.save
       CommentsMailer.notify_post_owner(@comment).deliver_later if user_signed_in?
-      redirect_to post_path(@post), notice: 'Comment created.'
+      redirect_to @post, notice: 'Comment created.'
     else
       flash[:alert] = 'Comments should be unique.'
       render '/posts/show'

@@ -1,7 +1,10 @@
 class FavouritesController < ApplicationController
 before_action :authenticate_user!
 
-  def create
+  def index
+  end
+
+  def createz
     @post = Post.find params[:post_id]
     fav = Favourite.new(post: @post, user: current_user)
     respond_to do |format|

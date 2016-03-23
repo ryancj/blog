@@ -7,23 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container-fluid">
 
-<nav>
-  <%= link_to 'Home', home_path %> |
-  <%= link_to 'About', about_path %> |
-  <%= link_to 'All Posts', posts_path %> |
-  <%= link_to 'New Post', new_post_path %>
-  <% if user_signed_in? %>
-    Hello <%= link_to current_user.first_name, edit_user_path(current_user) %>
-    <%= link_to 'Logout', sessions_path, method: :delete, data: { confirm: 'Are you sure you want to logout?' } %>
-  <% else %>
-    <%= link_to 'Login', new_session_path %>
-    <%= link_to 'Sign Up', new_user_path %>
-  <% end %>
-  <%= flash[:notice] || flash[:alert] %>
-</nav>
+    <nav class='navbar navbar-inverse navbar-fixed-top'>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <i class="fa fa-meh-o"></i>
+          <a class="navbar-brand" href="#">BLOGBOI</a>
+        </div>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><%= link_to 'Home', home_path %></li>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'All Posts', posts_path %></li>
+          <li><%= link_to 'New Post', new_post_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to current_user.full_name, edit_user_path(current_user) %></li>
+            <li><%= link_to 'Logout', sessions_path, method: :delete,
+            data: { confirm: 'Are you sure you want to logout?' } %></li>
+          <% else %>
+            <li><%= link_to 'Login', new_session_path %></li>
+            <li><%= link_to 'Sign Up', new_user_path %></li>
+          <% end %>
+          <li><%= form_tag(posts_path, method: 'get', id: 'search-form', class: 'navbar-form navbar-right') do %>
+            <%= text_field_tag :search, params[:search], placeholder: 'Search Blog', class: 'form-control' %>
+            <%= submit_tag 'Search', class: 'btn btn-default' %></li>
+          <% end %>
+        </ul>
+      <div>
+    </nav>
 
-<%= yield %>
+    <% if flash[:notice] %>
+      <div class='alert alert-success'><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class='alert alert-warning'><%= flash[:alert] %></div>
+    <% end %>
 
+
+  <%= yield %>
+
+  </div>
 </body>
 </html>

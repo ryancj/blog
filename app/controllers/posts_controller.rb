@@ -4,20 +4,23 @@ before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @post = Post.new
+    redirect_to root_path, alert: "You must be signed-in before you can post." and return unless can? :create, @post
   end
 
   def create
     @post = Post.new post_params
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: 'Post created.'
     else
-      flash[:alert] = 'Check errors and try again.'
+      flash[:alert] = 'Please check errors and try again.'
       render :new
     end
   end
 
   def show
     @comment = Comment.new
+    @favourite = @post.fav_for(current_user)
   end
 
   def index
@@ -31,6 +34,7 @@ before_action :authenticate_user!, except: [:show, :index]
   end
 
   def edit
+    redirect_to root_path, alert: "You cannot edit someone else's post." unless can? :edit, @post
   end
 
   def update
@@ -38,14 +42,15 @@ before_action :authenticate_user!, except: [:show, :index]
     if @post.save
       redirect_to post_path(@post), notice: 'Post updated.'
     else
-      flash[:alert] = 'Check errors and try again.'
+      flash[:alert] = 'Please check errors and try again.'
       render :edit
     end
   end
 
   def destroy
+    redirect_to root_path, alert: "You cannot delete this post." and return unless can? :destroy, @post
     @post.destroy
-    redirect_to posts_path, notice: 'Question deleted.'
+    redirect_to posts_path, notice: 'Post deleted.'
   end
 
   private

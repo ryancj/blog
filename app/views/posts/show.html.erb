@@ -4,7 +4,13 @@
 
 <p>Category: <%= @post.category_name %></p>
 
+<p>Created by: <%= @post.user.full_name %></p>
+
 <p><%= @post.created_at %></p>
+
+<div id='post-fav'>
+  <%= render '/favourites/post_fav' %>
+</div>
 
 <h3>Comments</h3>
 
